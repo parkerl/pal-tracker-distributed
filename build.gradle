@@ -1,10 +1,13 @@
 import io.pivotal.pal.tracker.gradlebuild.DependenciesGraphPlugin
 
+
 buildscript {
     ext {
         springBootVersion = "1.5.7.RELEASE"
         springVersion = "4.3.8.RELEASE"
         mysqlVersion = "6.0.6"
+        springCloudDependenciesVersion = "Edgware.RELEASE"
+        springCloudServicesVersion = "1.6.4.RELEASE"
     }
 
     repositories {
@@ -13,8 +16,18 @@ buildscript {
     }
 
     dependencies {
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE")
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
         classpath "mysql:mysql-connector-java:$mysqlVersion"
+    }
+}
+
+apply plugin: "io.spring.dependency-management"
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudDependenciesVersion"
+        mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:$springCloudServicesVersion"
     }
 }
 
@@ -36,7 +49,6 @@ subprojects {
         compile "com.fasterxml.jackson.core:jackson-databind:2.8.4"
         compile "com.fasterxml.jackson.core:jackson-annotations:2.8.4"
         compile "org.slf4j:slf4j-api:1.7.10"
-
         testCompile "junit:junit:4.12"
         testCompile "org.mockito:mockito-core:2.2.26"
         testCompile "org.assertj:assertj-core:3.8.0"
