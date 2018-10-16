@@ -3,7 +3,7 @@ REGISTRATION_APP_URL=registration-pal-jeff-and-lou.apps.pikes.pal.pivotal.io
 BACKLOG_APP_URL=backlog-pal-jeff-and-lou.apps.pikes.pal.pivotal.io
 ALLOCATIONS_APP_URL=allocations-pal-jeff-and-lou.apps.pikes.pal.pivotal.io
 TIMESHEETS_APP_URL=timesheets-pal-jeff-and-lou.apps.pikes.pal.pivotal.io
-./gradlew cloudNativeDeveloperDistributedSystemWithSecurity \
+./gradlew cloudNativeDeveloperDistributedSystemWithConfigServer \
     -PregistrationServerUrl=https://${REGISTRATION_APP_URL} \
     -PbacklogServerUrl=https://${BACKLOG_APP_URL} \
     -PallocationsServerUrl=https://${ALLOCATIONS_APP_URL} \
